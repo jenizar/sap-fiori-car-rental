@@ -1,0 +1,25 @@
+@AbapCatalog.sqlViewName: 'YV_CARS'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Car'
+@Metadata.ignorePropagatedAnnotations: true
+define view YI_RENTH_1010 as select from ytbrenth
+{
+    key police_no as PoliceNo,
+    brand_car as BrandCar,
+    car_model as CarModel,
+    color_options as ColorOptions,
+    engine_cylinder as EngineCylinder,
+    max_speed as MaxSpeed,
+    horse_power as HorsePower,
+    fuel_type as FuelType,
+    fuel_consumption as FuelConsumption,
+    prod_years as ProdYears,
+    car_door as CarDoor,
+    document_currency as DocumentCurrency,
+    car_price as CarPrice,
+    status_rent as StatusRent,
+    start_date as StartDate,
+    end_date as EndDate
+}
