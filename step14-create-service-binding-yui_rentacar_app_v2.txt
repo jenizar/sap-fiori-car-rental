@@ -1,0 +1,1 @@
+Binding Type: OData V2 - UI
