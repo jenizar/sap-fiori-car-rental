@@ -1,0 +1,8 @@
+Category: Predefined Type
+Data Type: CHAR
+Length: 10 
+
+Short: Police_No
+Medium: Police_No
+Long: Police_No
+Heading: Police_No
