@@ -1,0 +1,8 @@
+Category: Predefined Type
+Data Type: CHAR
+Length: 30 
+
+Short: Brand
+Medium: Brand
+Long: Brand
+Heading: Brand
