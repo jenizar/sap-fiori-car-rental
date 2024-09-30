@@ -1,0 +1,30 @@
+@EndUserText.label : 'Car'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table ytbrenth {
+
+  key client        : abap.clnt not null;
+  key police_no     : abap.char(10) not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  brand_car         : yde_brand
+    with foreign key [0..1,1] ytbrentb
+      where brand_car = ytbrenth.brand_car;
+  car_model         : abap.char(35);
+  color_options     : abap.char(15);
+  engine_cylinder   : abap.char(10);
+  max_speed         : abap.char(15);
+  horse_power       : abap.char(10);
+  fuel_type         : abap.char(10);
+  fuel_consumption  : abap.char(20);
+  prod_years        : abap.char(4);
+  car_door          : abap.char(1);
+  document_currency : abap.cuky;
+  @Semantics.amount.currencyCode : 'ytbrenth.document_currency'
+  car_price         : abap.curr(15,2);
+  status_rent       : abap.char(10);
+  start_date        : abap.dats;
+  end_date          : abap.dats;
+
+}
