@@ -1,0 +1,16 @@
+@AbapCatalog.sqlViewName: 'YV_CUSTOMER'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Customer'
+@Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
+define view YI_RENTI_1010 as select from ytbrenti
+{
+    key doc_id as DocId,
+    key police_no as PoliceNo,
+    lastname as Lastname,
+    firstname as Firstname,
+    email as Email,
+    cntr_type as CntrType
+}
