@@ -1,0 +1,19 @@
+@EndUserText.label : 'Customer'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table ytbrenti {
+
+  key client    : abap.clnt not null;
+  key doc_id    : abap.char(10) not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key police_no : yde_police_no not null
+    with foreign key [0..*,1] ytbrenth
+      where police_no = ytbrenti.police_no;
+  lastname      : abap.char(35);
+  firstname     : abap.char(35);
+  email         : abap.char(55);
+  cntr_type     : abap.char(2);
+
+}
