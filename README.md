@@ -11,6 +11,8 @@ https://sapcloudapps.wordpress.com/2024/09/30/sap-fiori-application-rental-car-a
 
 ![alt text](https://github.com/jenizar/sap-fiori-car-rental/blob/main/screenshot/pic3.png)
 
+![alt text](https://github.com/jenizar/sap-fiori-car-rental/blob/main/screenshot/pic4.png)
+
 step01-create-persistent-table-ytbrentb
 step02-create-persistent-table-ytbrenth
 step03-create-persistent-table ytbrenti
