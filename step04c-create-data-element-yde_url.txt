@@ -1,0 +1,8 @@
+Category: Predefined Type
+Data Type: STRING
+Length: 256
+
+Short: URL
+Medium: URL
+Long: URL
+Heading: URL
