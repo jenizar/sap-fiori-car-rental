@@ -1,0 +1,44 @@
+@AbapCatalog.sqlViewName: 'YV_RENT'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Car Rental App'
+@Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
+define view YC_RENTH_1010 as select from YI_RENTH_1010 as Cars
+  association [1]    to YI_REM_DAYS     as _RemDays      on Cars.PoliceNo = _RemDays.PoliceNo
+  association [0..*] to YI_RENTB_1010   as _Brands       on Cars.BrandCar = _Brands.BrandCar
+  association [0..*] to YI_RENTI_1010   as _DetCustomers on Cars.PoliceNo = _DetCustomers.PoliceNo
+
+{
+    key PoliceNo,
+    BrandCar,
+    CarModel,
+    ColorOptions,
+    EngineCylinder,
+    MaxSpeed,
+    HorsePower,
+    FuelType,
+    FuelConsumption,
+    ProdYears,
+    CarDoor,
+    DocumentCurrency,
+    CarPrice,
+    StatusRent,
+    StartDate,
+    EndDate,
+//      0 neutral grey
+//      1 negative red
+//      2 critical yellow
+//      3 positive geen
+      case
+        when _RemDays.Jour <= 0 then 0
+        when _RemDays.Jour between 1 and 30 then 1
+        when _RemDays.Jour between 31 and 100 then 2
+        when _RemDays.Jour > 100 then 3
+        else 0
+        end as DaysRemain,
+      '' as State,
+      _Brands.Url,
+      _DetCustomers 
+}
