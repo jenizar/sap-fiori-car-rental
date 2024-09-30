@@ -1,0 +1,15 @@
+@AbapCatalog.sqlViewName: 'YV_REM_DAYS'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Remaining days'
+@Metadata.ignorePropagatedAnnotations: true
+define view YI_REM_DAYS as select from ytbrenth
+{
+  key police_no as PoliceNo,
+      brand_car     as BrandCar,
+      case
+      when end_date <> ''
+      then dats_days_between( cast( $session.system_date as abap.dats ), end_date)
+      end       as Jour  
+}
