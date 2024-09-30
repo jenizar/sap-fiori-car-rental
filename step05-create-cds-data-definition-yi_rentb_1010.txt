@@ -1,0 +1,12 @@
+@AbapCatalog.sqlViewName: 'YV_BRANDS'
+@AbapCatalog.compiler.compareFilter: true
+@AbapCatalog.preserveKey: true
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Brand'
+@Metadata.ignorePropagatedAnnotations: true
+define view YI_RENTB_1010 as select from ytbrentb
+{
+    key brand_car as BrandCar,
+    key brand_uuid as Brand_UUID,
+    url as Url
+}
