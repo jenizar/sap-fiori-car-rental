@@ -1,0 +1,117 @@
+CLASS zcl_rent_gendata DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+      INTERFACES IF_OO_ADT_CLASSRUN.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_rent_gendata IMPLEMENTATION.
+
+  METHOD if_oo_adt_classrun~main.
+    DATA: LT_BRANDS TYPE TABLE OF ytbrentb,
+          LT_CARS TYPE TABLE OF ytbrenth,
+          LT_CUSTOMERS TYPE TABLE OF ytbrenti.
+*   * BRANDS **
+    lt_brands = VALUE #(
+        ( brand_car = 'AUDI A6 SALOON' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/audi-a6-saloon.jpg?raw=true' )
+        ( brand_car = 'AUDI RS4 AVANT' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/audi-rs4-avant.jpg?raw=true')
+        ( brand_car = 'BMW I7' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/bmw-z4-m40i.jpg?raw=true')
+        ( brand_car = 'BMW Z4 M40i' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/bmw-z4-m40i.jpg?raw=true')
+        ( brand_car = 'FERRARI 296 GTB' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/ferrari-296-gtb.jpg?raw=true')
+        ( brand_car = 'FERRARI ROMA SPIDER' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/ferrari-roma-spider.jpg?raw=true')
+        ( brand_car = 'FERRARI SF90 STRADALE' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/ferrari-sf90-stradale.jpg?raw=true')
+        ( brand_car = 'LANDROVER DEFENDER 130' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/landrover-defender-130.jpg?raw=true')
+        ( brand_car = 'MERCEDES EQS SALOON' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/mercedes-eqs-saloon.jpg?raw=true')
+        ( brand_car = 'MERCEDES MAYBACH S580' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/mercedes-maybach-s580.jpg?raw=true')
+        ( brand_car = 'MERCEDES V CLASS' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/mercedes-v-class.jpg?raw=true')
+        ( brand_car = 'ROLLS ROYCE PHANTOM EXTENDED' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/rolls-royce-phantom-extended.jpg?raw=true')
+        ( brand_car = 'TOYOTA CROWN SIGNIA' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/toyota-crown-signia.jpg?raw=true')
+        ( brand_car = 'TOYOTA VELLFIRE' brand_uuid = cl_system_uuid=>create_uuid_x16_static( ) url = 'https://github.com/jenizar/sap-fiori-car-rental/blob/main/images/toyota-vellfire.jpg?raw=true') ).
+
+    DELETE FROM ytbrentb.
+    INSERT ytbrentb FROM TABLE @lt_brands.
+
+    SELECT * FROM ytbrentb INTO TABLE @lt_brands.
+
+    out->write( sy-dbcnt ).
+    out->write( 'ytbrentb data inserted successfully!').
+
+*   * CARS**
+    lt_cars = VALUE #(
+        ( police_no = 'B1246GSA' brand_car = 'FERRARI SF90 STRADALE' car_model = 'SF90 STRADALE' color_options = 'Red' engine_cylinder = '3990' max_speed = '340' horse_power = '986.32' fuel_type = 'GASOLINE' fuel_consumption = '7.00'
+          prod_years = '20240418' car_door = '2' car_price = '295.000' document_currency = 'USD' status_rent = 'Rented' end_date = '20241201' start_date = '20241231' )
+        ( police_no = 'B2174FHF' brand_car = 'MERCEDES MAYBACH S580' car_model = 'MAYBACH S580' color_options = 'Red' engine_cylinder = '3982' max_speed = '250' horse_power = '503' fuel_type = 'GASOLINE' fuel_consumption = '10.00'
+          prod_years = '20240617' car_door = '4' car_price = '160.000' document_currency = 'USD' status_rent = 'On the lot' end_date = '' start_date = '' )
+        ( police_no = 'B2356FSF' brand_car = 'BMW Z4 M40i' car_model = 'Z4 M40i' color_options = 'Grey' engine_cylinder = '2998' max_speed = '300' horse_power = '400' fuel_type = 'GASOLINE' fuel_consumption = '11.00'
+          prod_years = '20200304' car_door = '2' car_price = '140.000' document_currency = 'USD' status_rent = 'Rented' end_date = '20250131' start_date = '20250708' )
+        ( police_no = 'B2392JFH' brand_car = 'ROLLS ROYCE PHANTOM EXTENDED' car_model = 'PHANTOM EXTENDED' color_options = 'Black' engine_cylinder = '6749' max_speed = '300' horse_power = '563' fuel_type = 'GASOLINE' fuel_consumption = '12.00'
+          prod_years = '20230924' car_door = '4' car_price = '300.000' document_currency = 'USD' status_rent = 'Rented' end_date = '20250211' start_date = '20241001' )
+        ( police_no = 'B2837KFF' brand_car = 'TOYOTA VELLFIRE' car_model = 'VELLFIRE' color_options = 'White' engine_cylinder = '2900' max_speed = '200' horse_power = '190' fuel_type = 'ELECTRIC' fuel_consumption = '0.00'
+          prod_years = '20200726' car_door = '5' car_price = '170.000' document_currency = 'USD' status_rent = 'In Service' end_date = '20241021' start_date = '20240901' )
+        ( police_no = 'B2837SUF' brand_car = 'MERCEDES V CLASS' car_model = 'V CLASS' color_options = 'White' engine_cylinder = '2300' max_speed = '250' horse_power = '211' fuel_type = 'GASOLINE' fuel_consumption = '6.00'
+          prod_years = '20200614' car_door = '5' car_price = '180.000' document_currency = 'USD' status_rent = 'On the lot' end_date = '' start_date = '' )
+        ( police_no = 'B2847JGH' brand_car = 'FERRARI 296 GTB' car_model = '296 GTB' color_options = 'Red' engine_cylinder = '2992' max_speed = '330' horse_power = '653.93' fuel_type = 'GASOLINE' fuel_consumption = '5.00'
+          prod_years = '20210716' car_door = '5' car_price = '230.000' document_currency = 'USD' status_rent = 'Rented' end_date = '20250131' start_date = '20240806' )
+        ( police_no = 'B2934HKJ' brand_car = 'AUDI RS4 AVANT' car_model = 'RS4 AVANT' color_options = 'Grey' engine_cylinder = '2500' max_speed = '250' horse_power = '450' fuel_type = 'GASOLINE' fuel_consumption = '8.00'
+          prod_years = '20200812' car_door = '4' car_price = '190.000' document_currency = 'USD' status_rent = 'Rented' end_date = '20241106' start_date = '20240906' )
+        ( police_no = 'B2747AWI' brand_car = 'BMW I7' car_model = 'I7' color_options = 'Grey' engine_cylinder = '3120' max_speed = '300' horse_power = '544' fuel_type = 'ELECTRIC' fuel_consumption = '5.00'
+          prod_years = '20210716' car_door = '5' car_price = '230.000' document_currency = 'USD' status_rent = 'On the lot' end_date = '' start_date = '' ) ).
+
+
+    DELETE FROM ytbrenth.
+    INSERT ytbrenth FROM TABLE @lt_cars.
+
+    SELECT * FROM ytbrenth INTO TABLE @lt_cars.
+    out->write( sy-dbcnt ).
+    out->write( 'ytbrenth data inserted successfully!').
+*    * CUSTOMERS**
+    lt_customers = VALUE #(
+        ( doc_id = '005638984K' police_no = 'B2392JFH' lastname = 'Guarente' firstname = 'Leonard' email = 'leonard.guarene@email.com' cntr_type = 'C1' )
+        ( doc_id = '982356739N' police_no = 'B2847JGH' lastname = 'Gallagher' firstname = 'Mary' email = 'mary.gallagher@email.com' cntr_type = 'C3' )
+        ( doc_id = '453532543O' police_no = 'B2837SUF' lastname = 'Tominaga' firstname = 'Naoomi' email = 'tominaga.naoomi@email.com' cntr_type = 'C1' )
+        ( doc_id = '005632984R' police_no = 'B1246GSA' lastname = 'Tuyeras' firstname = 'Remy' email = 'remy.tuyeras@email.com' cntr_type = 'C3' )
+        ( doc_id = '982367739N' police_no = 'B2356FSF' lastname = 'Glorioso' firstname = 'Christin' email = 'christin.glorioso@email.com' cntr_type = 'C2' )
+        ( doc_id = '340958439D' police_no = 'B2934HKJ' lastname = 'Firdaus' firstname = 'Wance' email = 'wance.firdaus@email.com' cntr_type = 'C1' )
+        ( doc_id = '964356739N' police_no = 'B2934HKJ' lastname = 'Alam' firstname = 'Tanimul' email = 'tanimul.alam@email.com' cntr_type = 'C1' )
+        ( doc_id = '340458439D' police_no = 'B2392JFH' lastname = 'Ondracek' firstname = 'Caitlin' email = 'caitlin.ondracek@email.com' cntr_type = 'C2' )
+        ( doc_id = '340958438D' police_no = 'B2827SAF' lastname = 'Igarashi' firstname = 'Masaki' email = 'masaki.igarashi@email.com' cntr_type = 'C3' )
+        ( doc_id = '859675368G' police_no = 'B2356FSF' lastname = 'Chalkiadaki' firstname = 'Angeliki' email = 'angeliki.chalkiadaki@email.com' cntr_type = 'C2' )
+        ( doc_id = '859675388V' police_no = 'B2827SAF' lastname = 'Libert' firstname = 'Sergiy' email = 'sergiy.libert@email.com' cntr_type = 'C2' )
+        ( doc_id = '340952439D' police_no = 'B2837KFF' lastname = 'Das' firstname = 'Abhirup' email = 'abhirup.das@email.com' cntr_type = 'C4' )
+        ( doc_id = '859675388G' police_no = 'B2837KFF' lastname = 'Bonkowski' firstname = 'Michael' email = 'michael.bonkowski@email.com' cntr_type = 'C1' )
+        ( doc_id = '982656739N' police_no = 'B2837SUF' lastname = 'Chang' firstname = 'HungChun' email = 'hungchun.chang@email.com' cntr_type = 'C3' )
+        ( doc_id = '345093450E' police_no = 'B2425SFA' lastname = 'Donmez' firstname = 'Gizem' email = 'gizem.donmez@email.com' cntr_type = 'C1' )
+        ( doc_id = '852367586F' police_no = 'B2425SFA' lastname = 'Vaughn' firstname = 'Allyson' email = 'allyson.vaughn@email.com' cntr_type = 'C4' )
+        ( doc_id = '345093850A' police_no = 'B2392JFH' lastname = 'Nakagawa' firstname = 'Takashi' email = 'takashi.nakagawa@email.com' cntr_type = 'C3' )
+        ( doc_id = '489632862G' police_no = 'B2934HKJ' lastname = 'Zainabadi' firstname = 'Kayvan' email = 'kayvan.zainabadi@email.com' cntr_type = 'C2' )
+        ( doc_id = '345234534M' police_no = 'B2934HKJ' lastname = 'Chen' firstname = 'Danica' email = 'danica.chen@email.com' cntr_type = 'C1' )
+        ( doc_id = '453572543O' police_no = 'B2837KFF' lastname = 'Berdichevsky' firstname = 'Ala' email = 'ala.berdichevsky@email.com' cntr_type = 'C4' )
+        ( doc_id = '345839534R' police_no = 'B2837KFF' lastname = 'Blander' firstname = 'Gil' email = 'gil.blander@email.com' cntr_type = 'C2' )
+        ( doc_id = '852327586F' police_no = 'B2837SUF' lastname = 'Bordone' firstname = 'Laura' email = 'laura.bordone@email.com' cntr_type = 'C2' )
+        ( doc_id = '345831534R' police_no = 'B2174FHF' lastname = 'Li' firstname = 'Xiaoling' email = 'xiaoling.li@email.com' cntr_type = 'C0' )
+        ( doc_id = '489612882D' police_no = 'B2174FHF' lastname = 'Haigis' firstname = 'Marcia' email = 'marcia.haigis@email.com' cntr_type = 'C1' )
+        ( doc_id = '348941597P' police_no = 'B2847JGH' lastname = 'Chung' firstname = 'Namjin' email = 'namjin.chung@email.com' cntr_type = 'C1' )
+        ( doc_id = '348947997P' police_no = 'B1246GSA' lastname = 'Sinclair' firstname = 'David' email = 'david.sinclair@email.com' cntr_type = 'C2' )
+        ( doc_id = '430958233A' police_no = 'B2174FHF' lastname = 'Kennedy' firstname = 'Brian' email = 'brian.kenedy@email.com' cntr_type = 'C4' )
+        ( doc_id = '453832543O' police_no = 'B2847JGH' lastname = 'Austriaco' firstname = 'Nick' email = 'nick.austriaco@email.com' cntr_type = 'C1' )
+        ( doc_id = '982124739N' police_no = 'B2837SUF' lastname = 'Kaeberlein' firstname = 'Matt' email = 'matt.kaeberlein@email.com' cntr_type = 'C3' )
+        ( doc_id = '982356839W' police_no = 'B2356FSF' lastname = 'Mcvey' firstname = 'Mitch' email = 'mitch.mcvey@email.com' cntr_type = 'C3' )
+        ( doc_id = '746586838K' police_no = 'B2747AWI' lastname = 'Mills' firstname = 'Kevin' email = 'kevin.milis@email.com' cntr_type = 'C4' )
+        ( doc_id = '982356839W' police_no = 'B2747AWI' lastname = 'Armstrong' firstname = 'Chris' email = 'chris.amstrong@email.com' cntr_type = 'C0' )
+        ( doc_id = '382956813Y' police_no = 'B2747AWI' lastname = 'Defossez' firstname = 'Pierre' email = 'pierre.defossez@email.com' cntr_type = 'C4' ) ).
+        DELETE FROM ytbrenti.
+        INSERT ytbrenti FROM TABLE @lt_customers.
+
+        SELECT * FROM ytbrenti INTO TABLE @lt_customers.
+        out->write( sy-dbcnt ).
+        out->write( 'ytbrenti data inserted successfully!').
+
+  ENDMETHOD.
+
+ENDCLASS.
