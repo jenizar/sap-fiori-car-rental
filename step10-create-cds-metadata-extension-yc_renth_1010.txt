@@ -1,0 +1,81 @@
+//@Metadata.layer: layer
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Rental',
+    typeNamePlural: 'Rental',
+    typeImageUrl: '',
+    imageUrl: 'Url',
+    title: {
+        type: #STANDARD,
+        label: 'Rental Car',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'BrandCar',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Rental Car',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'FuelType',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    }
+}
+@Search.searchable: true
+annotate entity YC_RENTH_1010
+    with 
+{
+    @UI.facet: [{ id: 'CarDetails', label: 'Details', type: #COLLECTION, position: 10 },
+                { id: 'Vehicle', parentId: 'CarDetails', label: 'Details', type: #FIELDGROUP_REFERENCE, 
+                targetQualifier: 'CarDetails', position: 10 },
+                { id: 'Cliente', label: 'Customers', type: #LINEITEM_REFERENCE, targetElement: '_DetCustomers', position: 20 }]
+    @UI.fieldGroup: [{ qualifier: 'CarDetails', position: 10, label: 'Police No.' }]
+    PoliceNo;
+    
+    @UI: {lineItem:       [{ position: 10, importance: #HIGH, label: 'Brand-Model' }],
+          selectionField: [{ position: 10 }]}
+    @Consumption.valueHelpDefinition: [{ entity: { name: 'YI_RENTB_1010', element: 'BrandCar' } }]
+    BrandCar;
+
+    @UI.lineItem: [{ position: 20, importance: #MEDIUM, label: 'Color' }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #MEDIUM, 
+        fuzzinessThreshold: 0.8
+    }
+    ColorOptions;
+    @UI.lineItem: [{ position: 30, importance: #LOW, label: 'Cylinder (cc)' }]
+    EngineCylinder;
+    @UI.lineItem: [{ position: 40, importance: #LOW, label: 'Top Speed (km/h)' }]
+    MaxSpeed;
+    @UI.lineItem: [{ position: 50, importance: #HIGH, label: 'Price'  } ]
+    CarPrice;
+    @UI.lineItem: [{ position: 60, importance: #HIGH, label: 'Currency' }]
+    DocumentCurrency;
+    @UI.lineItem: [{ position: 70, importance: #MEDIUM, label: 'Status' }]
+    @Search: {
+        defaultSearchElement: true,
+        ranking: #MEDIUM, 
+        fuzzinessThreshold: 0.8
+    }    
+    StatusRent;
+    @UI.lineItem: [{ position: 80, importance: #HIGH, label: 'Remark', criticality: 'DaysRemain' }]
+    State;
+    
+    
+    @UI.fieldGroup: [{ qualifier: 'CarDetails', position: 20, label: 'Horse Power' }]
+    HorsePower;
+    @UI.fieldGroup: [{ qualifier: 'CarDetails', position: 30, label: 'Fuel Consumption' }]
+    FuelConsumption;
+    @UI.fieldGroup: [{ qualifier: 'CarDetails', position: 40, label: 'Production Years' }]
+    ProdYears;
+    @UI.fieldGroup: [{ qualifier: 'CarDetails', position: 50, label: 'Total Door' }]
+    CarDoor; 
+}
