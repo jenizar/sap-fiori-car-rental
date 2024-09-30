@@ -1,0 +1,6 @@
+@EndUserText.label: 'Rent a Car Service App'
+define service YSD_RENTAL_1010 {
+  expose YC_RENTH_1010 as Cars;
+  expose YI_RENTI_1010 as Customers;
+  expose YI_RENTB_1010 as Brands;
+}
